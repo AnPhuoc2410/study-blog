@@ -47,8 +47,8 @@ export const siteConfig: SiteConfig = {
 	// 站点副标题
 	subtitle: "Learning & Notes",
 
-	// 站点 URL
-	site_url: "https://anphuoc2410.github.io/study-blog",
+	// 站点 URL (origin only, subpath is handled by base)
+	site_url: "https://anphuoc2410.github.io",
 
 	// 站点描述
 	description:
