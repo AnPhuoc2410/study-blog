@@ -48,10 +48,17 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	local: {
 		playlist: [
 			{
-				name: "使一颗心免于哀伤",
-				artist: "知更鸟 / HOYO-MiX / Chevy",
-				url: "/assets/music/使一颗心免于哀伤-哼唱.mp3",
-				cover: "/assets/music/cover/109951169585655912.webp",
+				name: "Thu Cuối",
+				artist: "Mr.T x Yanbi x Hằng BingBoong",
+				url: "/assets/music/thu_cuoi.mp3",
+				cover: "/assets/music/cover/cover_1.png",
+				lrc: "",
+			},
+			{
+				name: "Cơn Mưa Ngang Qua",
+				artist: "Sơn Tùng M-TP",
+				url: "/assets/music/con_mua_ngang_qua.mp3",
+				cover: "/assets/music/cover/cover_2.png",
 				lrc: "",
 			},
 		],
