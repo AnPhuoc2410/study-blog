@@ -1,21 +1,21 @@
 ---
 title: "Deep Dive into React 19: Actions, Server Components & Modern Architecture"
-published: 2026-10-07
+published: 2026-10-08
 description: "A comprehensive deep dive into React 19: Actions, useActionState, useOptimistic, the React Compiler, and concurrent rendering architectures."
-image: "images/both-grid.avif"
+image: "../images/both-grid.avif"
 tags:
   - React
   - Frontend
   - JavaScript
   - Architecture
   - WebDev
-category: "Frontend"
+category: "React"
 draft: false
-pinned: true
+pinned: false
 author: "An Phước"
 comment: true
-series: "Modern Web Frameworks"
-seriesOrder: 1
+series: "Java Fresher: React"
+seriesOrder: 2
 ---
 
 React 19 represents one of the most substantial architectural milestones in the React ecosystem. Rather than just introducing incremental APIs, it fundamentally shifts how state transitions, asynchronous operations, and server-client boundaries are handled.
