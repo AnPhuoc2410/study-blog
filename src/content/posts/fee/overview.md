@@ -12,7 +12,7 @@ tags:
   - Responsive
 category: "FEE"
 draft: false
-pinned: true
+pinned: false
 author: "An Phước"
 comment: true
 series: "Java Fresher: FEE"
@@ -188,4 +188,3 @@ Trong quá trình thiết kế và làm giao diện web, có thể tận dụng 
 
 > [!TIP]
 > - 🧠 **NotebookLM Ôn tập Front-End:** [Mở NotebookLM FEE](https://notebooklm.google.com/notebook/8e644120-4d82-4a2e-bf3d-b7c4844d0169)
-> - 📂 **Quy tắc tổ chức bài tập Git:** Tạo thư mục `FEE/` và lưu các bài lab theo tên `Ex1, Ex2...` (Notion) hoặc `ASM1, ASM2...` (FSA).

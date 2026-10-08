@@ -11,7 +11,7 @@ tags:
   - Backend
 category: "Hibernate"
 draft: false
-pinned: true
+pinned: false
 author: "An Phước"
 comment: true
 series: "Java Fresher: Hibernate"
@@ -184,4 +184,3 @@ graph LR
 
 > [!TIP]
 > - 🧠 **NotebookLM Ôn tập Hibernate & JPA:** [Mở NotebookLM Hibernate](https://notebooklm.google.com/notebook/247e602d-2fc6-488c-8674-21105a748fd7)
-> - 📂 **Quy tắc tổ chức bài tập Git:** Tạo thư mục `ORM/` trên Git repository, lưu bài tập theo định dạng `Ex1, Ex2...` (Notion) hoặc `ASM1, ASM2...` (FSA).

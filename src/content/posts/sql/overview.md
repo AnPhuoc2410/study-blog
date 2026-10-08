@@ -11,7 +11,7 @@ tags:
   - DML
 category: "SQL"
 draft: false
-pinned: true
+pinned: false
 author: "An Phước"
 comment: true
 series: "Java Fresher: SQL"
@@ -214,4 +214,3 @@ COMMIT;
 > [!TIP]
 > - 🐘 **Tải PostgreSQL chính thức:** [PostgreSQL Downloads](https://www.postgresql.org/)
 > - 🧠 **NotebookLM Ôn tập Database:** [Mở NotebookLM SQL](https://notebooklm.google.com/notebook/c7937227-96f7-4061-a34d-e8868a46e4a5)
-> - 🎯 **Quy tắc tổ chức bài tập Git:** Tạo thư mục riêng cho môn Database/SQL và đặt tên bài tập theo quy tắc `Ex1, Ex2...` (Notion) hoặc `ASM1, ASM2...` (FSA).

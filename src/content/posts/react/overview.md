@@ -244,6 +244,5 @@ export default function RoleManagement() {
 ## 4. Tài Liệu Tham Khảo & Link Ôn Tập
 
 > [!TIP]
-> - 📁 **Thư mục bài giảng chính thức:** [Google Drive Lecture Slides](https://drive.google.com/drive/folders/1RIPdVS7wNXZiu-FlWMZuT6XDUv--JVo_?usp=drive_link)
 > - 🧠 **NotebookLM Ôn tập React:** [Mở NotebookLM React](https://notebooklm.google.com/notebook/6b7d28b8-ca98-4859-82b5-982fbb3737bc)
-> - 🚀 **Bài viết nâng cao:** Đọc thêm bài [Deep Dive into React 19: Actions, Server Components & Modern Architecture](/posts/react/react-19-deep-dive/) nằm trong cùng series.
+> - 🚀 **Bài viết nâng cao:** Đọc thêm bài [Deep Dive into React 19: Actions, Server Components & Modern Architecture](/study-blog/posts/react/react-19-deep-dive/) nằm trong cùng series.

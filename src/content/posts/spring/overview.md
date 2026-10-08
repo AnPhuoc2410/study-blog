@@ -12,7 +12,7 @@ tags:
   - Backend
 category: "Java Spring"
 draft: false
-pinned: true
+pinned: false
 author: "An Phước"
 comment: true
 series: "Java Fresher: Spring Framework"
@@ -215,4 +215,3 @@ sequenceDiagram
 
 > [!TIP]
 > - 🧠 **NotebookLM Ôn tập Spring:** [Mở NotebookLM Spring](https://notebooklm.google.com/notebook/a9fe3af1-7d07-45ee-a271-e790602c3939)
-> - 📂 **Quy tắc tổ chức bài tập Git:** Tạo thư mục `Spring/` và lưu các bài lab theo tên `Ex1, Ex2...` (Notion) hoặc `ASM1, ASM2...` (FSA).

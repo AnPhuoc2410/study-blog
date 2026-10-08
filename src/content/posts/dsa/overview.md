@@ -11,7 +11,7 @@ tags:
   - LMS
 category: "DSA"
 draft: false
-pinned: true
+pinned: false
 author: "An Phước"
 comment: true
 series: "Java Fresher: DSA"
@@ -223,8 +223,6 @@ private static int partition(int[] arr, int low, int high) {
 > [!TIP]
 > Sử dụng trợ lý ôn tập tương tác dựa trên AI NotebookLM để giải đáp thắc mắc và luyện đề:
 > - 🧠 **NotebookLM Ôn tập DSA:** [Mở NotebookLM DSA](https://notebooklm.google.com/notebook/7a16d3b5-e149-422d-9813-1c05ee609dd9)
-> - 🌐 **Khóa học Level Common:** [AkaJob LevelUp Curricula](https://levelup.akajob.io/#/curricula/65db2e93-b8a4-4d24-8c22-7ebf9dc12976)
-
 ---
 
 ## 6. Tổng Kết

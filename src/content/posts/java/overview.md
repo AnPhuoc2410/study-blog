@@ -12,7 +12,7 @@ tags:
   - Multithreading
 category: "Java"
 draft: false
-pinned: true
+pinned: false
 author: "An Phước"
 comment: true
 series: "Java Fresher: Java"
@@ -220,4 +220,3 @@ public class StudentDao {
 > [!TIP]
 > - 🧠 **NotebookLM Ôn tập Java:** [Mở NotebookLM Java](https://notebooklm.google.com/notebook/1384a327-c778-4fca-8fe3-cefc8b8f857c)
 > - 💻 **Môi trường khuyến nghị:** Sử dụng **IntelliJ IDEA** kết hợp **OpenJDK 17 hoặc 21 (LTS)**.
-> - 📂 **Quy tắc nộp bài Git:** Tổ chức bài tập trong thư mục `Java/` trên Git repository của bạn.
