@@ -183,4 +183,5 @@ graph LR
 ## 6. Tài Nguyên & Link Ôn Tập
 
 > [!TIP]
+> - ⚡ **Chuyên đề tối ưu hiệu năng:** Đọc tiếp bài viết [Hibernate Caching Toàn Diện: First-Level & Second-Level Cache](/posts/hibernate/hibernate-cache) để làm chủ kỹ thuật giảm tải truy vấn DB và xử lý bộ nhớ đệm đa tầng.
 > - 🧠 **NotebookLM Ôn tập Hibernate & JPA:** [Mở NotebookLM Hibernate](https://notebooklm.google.com/notebook/247e602d-2fc6-488c-8674-21105a748fd7)

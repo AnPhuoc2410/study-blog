@@ -729,7 +729,241 @@ flowchart TD
   }
   ```
 
-## 6. Tài Liệu Tham Khảo & Luyện Đề
+---
+
+## 6. Bài Thực Hành: Thiết Kế Hệ Thống Quản Lý Phương Tiện (Vehicle Management)
+
+> [!TIP]
+> **Mục tiêu thực chiến:** Áp dụng kết hợp cả 4 tính chất OOP (Đóng gói, Kế thừa, Đa hình, Trừu tượng) cùng Interface và nguyên lý SOLID vào bài toán thiết kế hướng đối tượng thực tế.
+
+### 6.1 Sơ đồ kiến trúc lớp (Class Diagram)
+
+```mermaid
+classDiagram
+    class Refuelable {
+        <<interface>>
+        +refuel(double liters) void
+        +getFuelLevel() double
+    }
+
+    class Vehicle {
+        <<abstract>>
+        -String id
+        -String brand
+        -double basePrice
+        +Vehicle(id, brand, basePrice)
+        +calculateTax()* double
+        +displayInfo() void
+        +getId() String
+        +getBrand() String
+        +getBasePrice() double
+    }
+
+    class Car {
+        -int numberOfSeats
+        -double fuelLevel
+        +Car(id, brand, basePrice, numberOfSeats)
+        +calculateTax() double
+        +refuel(double liters) void
+        +getFuelLevel() double
+    }
+
+    class ElectricScooter {
+        -double batteryCapacity
+        +ElectricScooter(id, brand, basePrice, batteryCapacity)
+        +calculateTax() double
+    }
+
+    class VehicleManager {
+        -List~Vehicle~ vehicles
+        +addVehicle(Vehicle v) void
+        +printAll() void
+        +calculateTotalTax() double
+    }
+
+    Vehicle <|-- Car : Kế thừa (IS-A)
+    Vehicle <|-- ElectricScooter : Kế thừa (IS-A)
+    Refuelable <|.. Car : Cài đặt (CAN-DO)
+    VehicleManager o-- Vehicle : Thu nạp (HAS-A)
+```
+
+### 6.2 Cài đặt mã nguồn chi tiết
+
+#### 1. Lớp Trừu Tượng `Vehicle` (Encapsulation & Abstraction)
+```java
+public abstract class Vehicle {
+    private final String id;
+    private final String brand;
+    private double basePrice;
+
+    public Vehicle(String id, String brand, double basePrice) {
+        if (basePrice < 0) {
+            throw new IllegalArgumentException("Giá gốc không được âm");
+        }
+        this.id = id;
+        this.brand = brand;
+        this.basePrice = basePrice;
+    }
+
+    // Phương thức trừu tượng buộc các lớp con phải ghi đè theo công thức thuế riêng
+    public abstract double calculateTax();
+
+    public void displayInfo() {
+        System.out.printf("[%s] Hãng: %-12s | Giá gốc: %,14.0f VNĐ | Thuế: %,12.0f VNĐ\n",
+                id, brand, basePrice, calculateTax());
+    }
+
+    public String getId() { return id; }
+    public String getBrand() { return brand; }
+    public double getBasePrice() { return basePrice; }
+}
+```
+
+#### 2. Giao Diện `Refuelable` (Interface & Contract)
+```java
+public interface Refuelable {
+    void refuel(double amount);
+    double getFuelLevel();
+}
+```
+
+#### 3. Lớp Con `Car` (Inheritance, Polymorphism & Interface Implementation)
+```java
+public class Car extends Vehicle implements Refuelable {
+    private final int numberOfSeats;
+    private double fuelLevel;
+
+    public Car(String id, String brand, double basePrice, int numberOfSeats) {
+        super(id, brand, basePrice);
+        this.numberOfSeats = numberOfSeats;
+        this.fuelLevel = 0.0;
+    }
+
+    @Override
+    public double calculateTax() {
+        // Thuế ô tô: 10% VAT + 30% Thuế tiêu thụ đặc biệt nếu > 5 chỗ
+        double vat = getBasePrice() * 0.10;
+        double specialTax = (numberOfSeats > 5) ? getBasePrice() * 0.30 : getBasePrice() * 0.20;
+        return vat + specialTax;
+    }
+
+    @Override
+    public void refuel(double amount) {
+        if (amount > 0) {
+            this.fuelLevel += amount;
+            System.out.printf("Xe [%s] đã nạp thêm %.1f lít xăng (Hiện có: %.1fL)\n", 
+                    getId(), amount, this.fuelLevel);
+        }
+    }
+
+    @Override
+    public double getFuelLevel() {
+        return fuelLevel;
+    }
+}
+```
+
+#### 4. Lớp Con `ElectricScooter` (Xe máy điện - Thân thiện môi trường)
+```java
+public class ElectricScooter extends Vehicle {
+    private final double batteryCapacity; // Dung lượng pin (kWh)
+
+    public ElectricScooter(String id, String brand, double basePrice, double batteryCapacity) {
+        super(id, brand, basePrice);
+        this.batteryCapacity = batteryCapacity;
+    }
+
+    @Override
+    public double calculateTax() {
+        // Xe điện được nhà nước ưu đãi thuế ưu tiên chỉ 5%
+        return getBasePrice() * 0.05;
+    }
+}
+```
+
+#### 5. Quản Lý & Thực Thi Đa Hình `VehicleManager`
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class VehicleManager {
+    private final List<Vehicle> vehicles = new ArrayList<>();
+
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.add(vehicle);
+    }
+
+    public void displayAllVehicles() {
+        System.out.println("\n============= DANH SÁCH PHƯƠNG TIỆN =============");
+        for (Vehicle v : vehicles) {
+            // Đa hình tại runtime: JVM tự động gọi đúng displayInfo và calculateTax của từng loại xe
+            v.displayInfo();
+        }
+    }
+
+    public double calculateTotalTax() {
+        double total = 0.0;
+        for (Vehicle v : vehicles) {
+            total += v.calculateTax();
+        }
+        return total;
+    }
+
+    public static void main(String[] args) {
+        VehicleManager manager = new VehicleManager();
+
+        manager.addVehicle(new Car("CAR01", "Toyota Camry", 1_050_000_000, 5));
+        manager.addVehicle(new Car("CAR02", "Ford Everest", 1_450_000_000, 7));
+        manager.addVehicle(new ElectricScooter("SCOOT01", "VinFast Feliz", 29_000_000, 3.5));
+
+        manager.displayAllVehicles();
+        System.out.printf("\n💰 Tổng tiền thuế dự kiến thu: %,.0f VNĐ\n", manager.calculateTotalTax());
+    }
+}
+```
+
+---
+
+## 7. Bộ Câu Hỏi Phỏng Vấn OOP Thường Gặp & Đáp Án Trọng Tâm
+
+### Q1: Phân biệt toán tử `==` và phương thức `.equals()` trong Java?
+- **`==`**: So sánh trực tiếp giá trị bit. Với kiểu nguyên thủy (`primitive`), nó so sánh giá trị thô. Với kiểu đối tượng (`reference`), nó so sánh **địa chỉ vùng nhớ** của 2 tham chiếu trên Heap xem có cùng trỏ vào một instance hay không.
+- **`.equals()`**: Phương thức của `java.lang.Object`. Mặc định của Object cũng dùng `==`, nhưng phương thức này được thiết kế để các lớp con ghi đè (`override`) nhằm **so sánh ngữ nghĩa giá trị thực tế** (ví dụ: `String`, `Integer`, `Date` hay thực thể nghiệp vụ so sánh theo mã `id`).
+
+### Q2: Tại sao phải ghi đè `hashCode()` khi ghi đè `equals()`?
+- **Hợp đồng (Contract) giữa `equals` và `hashCode`:** Nếu hai đối tượng bằng nhau theo `equals()`, thì phương thức `hashCode()` của chúng **bắt buộc phải trả về cùng một số nguyên `int`**.
+- **Hệ quả nếu vi phạm hợp đồng:** Khi đối tượng được lưu vào các cấu trúc dữ liệu bảng băm (`HashMap`, `HashSet`, `Hashtable`):
+  1. `HashMap` sẽ dùng `hashCode()` để tính bucket index lưu trữ.
+  2. Nếu không ghi đè `hashCode()`, hai đối tượng có cùng thuộc tính sẽ sinh ra 2 mã băm khác nhau và nằm ở 2 bucket khác nhau.
+  3. Dẫn đến hậu quả nghiêm trọng: `map.get(new Student("SV01"))` sẽ trả về `null` dù sinh viên đã tồn tại, hoặc `HashSet` sẽ cho phép lưu 2 phần tử trùng lặp!
+
+### Q3: Hàm khởi tạo (Constructor) có thể khai báo là `final`, `static` hoặc `abstract` không?
+- **Hoàn toàn KHÔNG:**
+  - Không thể là `final`: `final` dùng để ngăn chặn việc ghi đè phương thức ở lớp con. Mà Constructor **không được kế thừa** nên không bao giờ có khái niệm ghi đè constructor.
+  - Không thể là `static`: `static` thuộc về lớp (Class-level), trong khi Constructor dùng để khởi tạo trạng thái cho một thực thể cụ thể (Instance-level).
+  - Không thể là `abstract`: `abstract` yêu cầu lớp con phải viết thân hàm cài đặt, nhưng constructor không thể kế thừa và phải có thân hàm thực thi khởi tạo instance.
+
+### Q4: Java có hỗ trợ Đa kế thừa với Lớp (Class) không? Tại sao?
+- **Không hỗ trợ đa kế thừa với Lớp:** Java cấm một lớp `extends` nhiều lớp nhằm loại bỏ hoàn toàn bài toán **"Diamond Problem"** (Vấn đề kim cương). Khi hai lớp cha cùng định nghĩa một phương thức có cùng tên và kiểu tham số, nếu lớp con kế thừa cả hai thì JVM sẽ không thể xác định được nên thực thi phương thức của lớp cha nào.
+- **Giải pháp:** Java hỗ trợ **Đa cài đặt Interface (`implements nhiều interface`)**. Từ Java 8, interface có `default method`. Nếu có xung đột giữa 2 interface có cùng default method, trình biên dịch sẽ ép buộc lớp con phải chủ động ghi đè (`override`) và chỉ định rõ muốn gọi của ai thông qua cú pháp:
+  ```java
+  InterfaceA.super.methodName();
+  ```
+
+### Q5: Phân biệt Shallowed Copy (Sao chép nông) vs Deep Copy (Sao chép sâu)?
+- **Shallow Copy (Sao chép nông):** Tạo một đối tượng mới, sao chép các trường nguyên thủy, nhưng đối với các trường tham chiếu (Object Reference), nó chỉ sao chép địa chỉ con trỏ. Kết quả là cả hai đối tượng cùng trỏ tới một vùng nhớ con; nếu đối tượng này sửa đổi trường con, đối tượng kia cũng bị ảnh hưởng.
+- **Deep Copy (Sao chép sâu):** Tạo một đối tượng mới và đồng thời đệ quy tạo mới toàn bộ các đối tượng tham chiếu phụ thuộc bên trong nó. Cả hai thực thể hoàn toàn độc lập với nhau trong bộ nhớ Heap.
+
+### Q6: Tại sao phương châm thiết kế lại là *"Favor Composition Over Inheritance"*?
+- **Kế thừa (`Inheritance - IS-A`)** tạo ra mối liên kết rất chặt chẽ (*tight coupling*). Mọi sự thay đổi về chữ ký phương thức hoặc hành vi ở lớp cha đều có nguy cơ làm gãy logic của toàn bộ các lớp con (*Fragile Base Class problem*).
+- **Hợp thành (`Composition - HAS-A`)** giữ một tham chiếu đến đối tượng khác bên trong lớp mình thông qua Interface. Điều này mang lại sự linh hoạt tuyệt đối:
+  - Có thể thay đổi hành vi động tại runtime (chuyển đổi implementation).
+  - Độc lập kiểm thử (dễ dàng Mock/Stub trong Unit Test).
+  - Tránh phơi bày các phương thức không cần thiết của lớp cha ra ngoài.
+
+---
+
+## 8. Tài Liệu Tham Khảo & Luyện Đề
 
 > [!TIP]
 > - 📖 **Sách kinh điển:** *Effective Java (Joshua Bloch)*, *Head First Design Patterns*.
