@@ -21,7 +21,16 @@ seriesOrder: 1
 
 **Spring Framework** là nền tảng số một để phát triển các ứng dụng doanh nghiệp phía máy chủ (Enterprise Server-Side Applications) trong hệ sinh thái Java. Với sự ra đời của **Spring Boot**, việc cấu hình phức tạp đã được thay thế bằng triết lý *"Convention over Configuration"*, cho phép lập trình viên tạo ra các dịch vụ sẵn sàng chạy sản xuất (production-ready) chỉ trong vài phút.
 
-Bài viết này tổng hợp toàn bộ các khái niệm nòng cốt, luồng hoạt động của RESTful API và kiến trúc bảo mật với Spring Security & JWT trong lộ trình **Java Fresher**.
+> [!TIP]
+> 📚 **Lộ trình trọn bộ Series Java Spring (8 bài viết chuyên sâu):**
+> 1. [Bài 1: Cẩm Nang Tổng Quan & Lộ Trình Kiến Trúc Toàn Diện](/study-blog/posts/spring/overview/) *(Bài viết hiện tại)*
+> 2. [Bài 2: Spring Core & IoC Container: Vòng Đời Bean, Scope & Dependency Injection](/study-blog/posts/spring/spring-core-ioc-di/)
+> 3. [Bài 3: Spring AOP & Quản Lý Giao Dịch: Bản Chất Proxy, CGLIB & Cạm Bẫy Transaction](/study-blog/posts/spring/spring-aop-transactions/)
+> 4. [Bài 4: Spring MVC, RESTful API & Error Handling: Luồng DispatcherServlet & Chuẩn Hóa Phản Hồi](/study-blog/posts/spring/spring-mvc-rest-api/)
+> 5. [Bài 5: Spring Boot Internals: Auto-Configuration, Starters, Profiles & Actuator](/study-blog/posts/spring/spring-boot-internals/)
+> 6. [Bài 6: Spring Data JPA & Hibernate Mastery: Giải Mã N+1 Query & Kỹ Thuật Tối Ưu](/study-blog/posts/spring/spring-data-jpa-mastery/)
+> 7. [Bài 7: Spring Security, Testing & Clean Architecture: Filter, BCrypt & MockMvc](/study-blog/posts/spring/spring-security-testing/)
+> 8. [Bài 8: Master Cheat Sheet: Trọn Bộ 50 Câu Hỏi Phỏng Vấn Java Spring Framework](/study-blog/posts/spring/spring-interview-50-qa/)
 
 ---
 
