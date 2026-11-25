@@ -1,8 +1,25 @@
+---
+title: "Simple React Snippets: Essential React Snippets & Commands"
+published: 2026-10-13
+description: "The essential collection of React Snippets and commands for faster React development."
+image: "../images/firefly1.avif"
+tags:
+  - React
+  - Snippets
+  - VSCode
+  - Frontend
+category: "React"
+draft: false
+pinned: false
+author: "An Phước"
+comment: true
+series: "Java Fresher: React"
+seriesOrder: 4
+---
+
 # Simple React Snippets
 
 The essential collection of React Snippets and commands.
-
-![snippets in action](images/snippets-in-action.gif)
 
 ## Features
 
